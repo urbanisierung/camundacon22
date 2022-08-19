@@ -5,16 +5,23 @@
 
 ## Todos
 
-- Open a ticket: Trello and Github
+- Open a ticket: Trello and Github ✔
 - Slack Notifications ✔
 - Update Hubspot Contact Property ✔
-- Send Analytics Events using Mixpanel
+- Send Analytics Events using Mixpanel ✔
 - Add an table entry using Airtable ✔
 - Store JSON Data using IPFS ✔
-- Send an E-Mail using Sendgrid
-- Randomly select a cat picture using cats api
+- Send an E-Mail using Sendgrid ✔
+- Randomly select a cat picture using cats api ✔
 - Get crypto asset price via coinmarketcap api (if you want to know the price for a current event, like a new signup)
 - Create a welcome image using websiteshot api
+- Get content from contentful ✔
+
+### Nice Links
+
+- Feel
+  - Playground: https://nikku.github.io/feel-playground/
+  - Docs: https://docs.camunda.io/docs/components/modeler/feel/language-guide/feel-temporal-expressions/
 
 ### Start Instance Payload
 
@@ -22,9 +29,114 @@
 {
   "data": {
     "name": "Adam",
-    "email": "adam.urban@gmail.com"
+    "email": "adam.urban@gmail.com",
+    "id": "123asd",
+    "now": 1660903772643
   }
 }
+```
+
+### Contentful
+
+General
+
+- Authentication: Settings / API-Keys
+
+Service Task Config
+
+- URL: `https://graphql.contentful.com/content/v1/spaces/:spaceId`
+- Method: `POST`
+- Payload:
+
+```
+{
+  query: "{ emailCollection { items { content } } }"
+}
+```
+
+Result Expression:
+
+```
+{
+  emailContent: body.data.emailCollection.items[1].content
+}
+```
+
+### Sendgrid
+
+General
+
+- Authentication: `https://app.sendgrid.com/settings/api_keys`
+
+Service Task Config
+
+- Sendgrid API Key: `"secrets.SENDGRID"`
+- Receiver: `data.name` and `data.email`
+- Template Id: `"secrets.SENDGRID_TEMPLATE"`
+- Template Data:
+
+```
+{
+  name: data.name
+}
+```
+
+### The Cat API
+
+General
+
+Service Task Config
+
+- URL: `https://api.thecatapi.com/v1/images/search`
+- Method: `GET`
+
+Response: `cat.body[0].url`
+
+Example:
+
+```json
+[
+  {
+    "id": "dmr",
+    "url": "https://cdn2.thecatapi.com/images/dmr.jpg",
+    "width": 640,
+    "height": 512
+  }
+]
+```
+
+### Mixpanel
+
+General
+
+- Authentication: Organization Settings / Service Accounts
+
+Service Task Config
+
+- URL: `https://api-eu.mixpanel.com/import`
+- Method: `POST`
+- Query:
+
+```
+{
+  project_id: "secrets.MIXPANEL_PROJECT_ID"
+}
+```
+
+- Payload:
+
+```
+[
+  {
+    event: "ccon22",
+    properties: {
+      time: data.now,
+      $insert_id: data.id,
+      distinct_id: data.email,
+      name: data.name
+    }
+  }
+]
 ```
 
 ### Trello
@@ -60,7 +172,7 @@ General
 
 Service Task Config
 
-- URL: `https://hooks.slack.com/services/:webhookid`
+- URL: `https://hooks.slack.com/services/:webhookid` / `"secrets.SLACK"`
 - Method: `POST`
 - Payload:
 
@@ -77,6 +189,8 @@ Service Task Config
   ]
 }
 ```
+
+Response:
 
 ### Hubspot
 
