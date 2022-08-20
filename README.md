@@ -18,6 +18,12 @@
 - Get content from contentful ✔
 - Check Noris Jokes? https://api.chucknorris.io/
 
+- Simple Frontend with three input fields:
+  - Name
+  - E-Mail
+  - Did you like the talk?
+- Use Rest Zeebe to start new process instance
+
 ### Nice Links
 
 - Feel
