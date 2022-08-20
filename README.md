@@ -62,6 +62,9 @@ Result Expression:
 }
 ```
 
+- Hints
+  - Feel Expression with Lists/Arrays start at index 1 and not at index 0
+
 ### Sendgrid
 
 General
@@ -90,7 +93,7 @@ Service Task Config
 - URL: `https://api.thecatapi.com/v1/images/search`
 - Method: `GET`
 
-Response: `cat.body[0].url`
+Response: `cat.body[1].url`
 
 Example:
 
@@ -139,6 +142,11 @@ Service Task Config
 ]
 ```
 
+- Hints
+  - Mixpanel API: `api` vs `api-eu`
+  - Mixpanel: using import API instead of track api because of auth via header
+    - Project Tokens need to be set via Body data (`secrets` currently not supported)
+
 ### Trello
 
 General
@@ -163,6 +171,9 @@ Service Task Config
   name: "Hi, "+data.name+"!"
 }
 ```
+
+- Hints
+  - Get Board and List Id via `.json` url
 
 ### Slack
 
@@ -189,6 +200,9 @@ Service Task Config
   ]
 }
 ```
+
+- Hints
+  - make sure to use double quotes for `secrets.SLACK` in URL
 
 Response:
 
