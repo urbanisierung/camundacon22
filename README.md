@@ -16,6 +16,7 @@
 - Get crypto asset price via coinmarketcap api (if you want to know the price for a current event, like a new signup)
 - Create a welcome image using websiteshot api
 - Get content from contentful ✔
+- Check Noris Jokes? https://api.chucknorris.io/
 
 ### Nice Links
 
