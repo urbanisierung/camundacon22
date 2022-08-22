@@ -16,7 +16,7 @@
 - Get crypto asset price via coinmarketcap api (if you want to know the price for a current event, like a new signup)
 - Create a welcome image using websiteshot api
 - Get content from contentful ✔
-- Check Noris Jokes? https://api.chucknorris.io/
+- Check Noris Jokes? https://api.chucknorris.io/ - GET https://api.chucknorris.io/jokes/random?category=science
 
 - Simple Frontend with three input fields:
   - Name
@@ -40,6 +40,20 @@
     "id": "123asd",
     "now": 1660903772643
   }
+}
+```
+
+### Chuck Norris Jokes
+
+Service Task Config
+
+- URL: `https://api.chucknorris.io/jokes/random`
+- Method: `GET`
+- Query:
+
+```
+{
+  category: "science"
 }
 ```
 
