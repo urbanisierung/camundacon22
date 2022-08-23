@@ -1,0 +1,31 @@
+# Cat API
+
+General
+
+Service Task Config
+
+- RestConnector: No Auth
+- Name: `Random Cat Image`
+- URL: `https://api.thecatapi.com/v1/images/search`
+- Method: `GET`
+
+Result Expression:
+
+```
+{
+  catImage: body[1].url
+}
+```
+
+Example:
+
+```json
+[
+  {
+    "id": "dmr",
+    "url": "https://cdn2.thecatapi.com/images/dmr.jpg",
+    "width": 640,
+    "height": 512
+  }
+]
+```
