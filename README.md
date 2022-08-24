@@ -323,3 +323,10 @@ Response: `cid`
 
 Gateway: `https://gateway.ipfs.io/ipfs/:hash`
 Example: `https://gateway.ipfs.io/ipfs/bafkreib2ur773sls3p5e2yu26sc43olgrf5ckkgjple3ss4ucq47udephq`
+
+### Other
+
+- Gradient Gifs
+  - https://giphy.com/explore/gradient
+  - https://giphy.com/search/hypnotizing
+- Google Slides Dimensions: 16:9 / 960x540 --> 480x540
