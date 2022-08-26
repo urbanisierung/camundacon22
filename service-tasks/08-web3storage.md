@@ -17,7 +17,15 @@ Service Task Config
 {
   content: {
     name: data.name,
-    text: "Hey there! I hope you had a lot of fun at CamundaCon 22!"
+    p1: emailContent.p1,
+    p2: emailContent.p2,
+    p3: emailContent.p3,
+    p4: emailContent.p4,
+    linkSlideDeck: emailContent.linkSlideDeck,
+    linkGithub: emailContent.linkGithub,
+    linkBlog: emailContent.linkBlog,
+    chuckNorrisJoke: chuckNorrisJoke,
+    cat: catImage
   }
 }
 ```

@@ -16,6 +16,16 @@ Service Task Config
 
 ```
 {
-  name: data.name
+  name: data.name,
+  p1: emailContent.p1,
+  p2: emailContent.p2,
+  p3: emailContent.p3,
+  p4: emailContent.p4,
+  linkSlideDeck: emailContent.linkSlideDeck,
+  linkGithub: emailContent.linkGithub,
+  linkBlog: emailContent.linkBlog,
+  ipfsHash: ipfsHash,
+  chuckNorrisJoke: chuckNorrisJoke,
+  cat: catImage
 }
 ```
