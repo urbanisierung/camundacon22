@@ -24,6 +24,7 @@ Service Task Config
   linkSlideDeck: emailContent.linkSlideDeck,
   linkGithub: emailContent.linkGithub,
   linkBlog: emailContent.linkBlog,
+  linkApp: emailContent.linkApp,
   ipfsHash: ipfsHash,
   chuckNorrisJoke: chuckNorrisJoke,
   cat: catImage

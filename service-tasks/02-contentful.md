@@ -31,7 +31,8 @@ Result Expression:
     p4: body.data.emailCollection.items[4].content,
     linkSlideDeck: body.data.emailCollection.items[5].content,
     linkGithub: body.data.emailCollection.items[6].content,
-    linkBlog: body.data.emailCollection.items[7].content
+    linkBlog: body.data.emailCollection.items[7].content,
+    linkApp: body.data.emailCollection.items[8].content
   }
 }
 ```
