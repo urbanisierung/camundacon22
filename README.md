@@ -330,3 +330,15 @@ Example: `https://gateway.ipfs.io/ipfs/bafkreib2ur773sls3p5e2yu26sc43olgrf5ckkgj
   - https://giphy.com/explore/gradient
   - https://giphy.com/search/hypnotizing
 - Google Slides Dimensions: 16:9 / 960x540 --> 480x540
+
+### Images
+
+- Welcome a customer
+  - https://unsplash.com/photos/oTweoxMKdkA / https://unsplash.com/@brookecagle
+  - https://unsplash.com/photos/POzx_amnWJw / https://unsplash.com/@claybanks
+  - https://unsplash.com/photos/95UF6LXe-Lo / https://unsplash.com/@charlesetoroma
+- sport
+  - https://unsplash.com/photos/-6GinD-1NwE / https://unsplash.com/@cchau
+  - https://unsplash.com/photos/8Naac6Zpy28 / https://unsplash.com/@matt909
+  - https://unsplash.com/photos/SE9bKjzr1Eg / https://unsplash.com/@davidutt36
+  - https://unsplash.com/photos/x5GcXFvJJhI / https://unsplash.com/@peterampazzo
