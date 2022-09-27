@@ -36,7 +36,7 @@ That's the process I'm going to model in this article. The nice thing is that it
 
 If you already have experience with Camunda 8, then you know that a Service Worker is required to execute a Service Task. Camunda 8 Connectors make the custom development of service workers for certain use cases obsolete. So if you want to call a service with a RESTful API, you can use the generic REST Connector, which only needs to be configured. This includes things like the URL of the API, the request method, authorization, and parameters.
 
-![connectors](https://ccon22.flethy.com/airtable-create-secret.gif)
+![connectors](https://ccon22.flethy.com/configure-task-as-camunda-8-connector.gif)
 
 It's very easy to configure a task: just choose the associated connector instead of a service task. Currently there is a REST connector, a SendGrid connector and a Slack connector available.
 
