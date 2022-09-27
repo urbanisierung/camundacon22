@@ -1,10 +1,10 @@
 # Be an orchestration hero
 
-Or: 10 Things you can do owith Camunda SaaS without a line of code
+Or: 10 Things you can do with Camunda SaaS without a line of code
 
 Everyone wants to have **satisfied customers and users**. A satisfied customer recommends your product or service, likes to give feedback and is also willing to spend money on it. The product itself is only half the truth. Whether a customer likes your product or not starts at the very first touch point.
 
-![hello, customer](./img/hello-customer.png)
+![hello, cutomer](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/qb978yg6cu72n03erc5i.png)
 
 So when we welcome a customer, for example, it's not just about writing a welcome email. It's about preparing a pleasant journey across all life cycles. A welcome email is only a small part of that.
 
@@ -20,23 +20,23 @@ Usually, none of these things is the core competency of your own product. It's m
 - we use Contentful to extract content,
 - and we use Trello to create new tasks on a board.
 
-![integration overview](./img/integration-overview.png)
+![integration overview](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/jcipwoajpx30m2ose76q.png)
 
 ## No line of code
 
-If you are a developer, this won't make you sweat. But what if you don't have a developer background? Do you need to request resources from developers, or do you need to ask an agency that you can integrate with all the services? For my case described above, the answer is clearly **no**! I'm going to show you how you can easily integrate with 10 services without writing a single line of code using Camunda 8 and the recently introduced connectors.
+If you are a developer, this won't make you sweat. But what if you don't have a developer background? Do you need to request resources from developers? For my case described above, the answer is clearly **no**! I'm going to show you how you can easily integrate with 10 services without writing a single line of code using Camunda 8 and the recently introduced connectors.
 
-![workflow](./img/send-presentation-content.png)
+![workflow](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/qwhwqcesrbeyvgk7r8dl.png)
 
 That's the process I'm going to model in this article. The nice thing is that it is not a pure theoretical workflow, this workflow is deployed in Camunda SaaS and is started as soon as someone registers on the associated website with their email address. The workflow sends an email at the end with all necessary information, which I showed in my talk at [CamundaCon](https://camundacon.com) and decribed here.
 
-![website](./img/website-email.png)
+![website](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/7vbkgv9n050dg2b0sexk.png)
 
 ## A little basic knowledge
 
 If you already have experience with Camunda 8, then you know that a Service Worker is required to execute a Service Task. Camunda 8 Connectors make the custom development of service workers for certain use cases obsolete. So if you want to call a service with a RESTful API, you can use the generic REST Connector, which only needs to be configured. This includes things like the URL of the API, the request method, authorization, and parameters.
 
-![connectors](./img/configure-task-as-camunda-8-connector.gif)
+![connectors](https://ccon22.flethy.com/airtable-create-secret.gif)
 
 It's very easy to configure a task: just choose the associated connector instead of a service task. Currently there is a REST connector, a SendGrid connector and a Slack connector available.
 
@@ -48,7 +48,7 @@ To connect a service you have to do three things:
 
 On Camunda's side, you will of course need a cluster, credentials in Secrets and the modeled diagram.
 
-![secrets](./img/airtable-create-secret.gif)
+![secrets](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/zepd2ldm4zokwubzflm1.gif)
 
 Secrets were introduced together with connectors. They are used to keep the keys for the APIs in a safe place. Thus, no credentials need to be stored in your BPMN diagram, but references are used. The creation is easily done via the cluster details in the Cloud Console.
 
@@ -264,7 +264,7 @@ Wow, what a ride! We have already integrated seven services. But we're not at th
 
 ### Push data to the IPFS network
 
-Blockchain, web3, crypto, there is no getting around these terms in the tech scene at the moment. We will also use decentralized infrastructure to make the relevant information available on the IPFS network. The content hash behind the data will be used to resolve the data on the associated website so that the info is not exclusively available in an email. Regular HTTP gateways also exist for web3 technologies. Using the API of Web3Storage we can easily upload data.
+Blockchain, web3, crypto, there is no way to avoid these terms in the tech scene at the moment. We will also use decentralized infrastructure to make the relevant information available on the IPFS network. The content hash behind the data will be used to resolve the data on the associated website so that the info is not exclusively available in an email. Regular HTTP gateways also exist for web3 technologies. Using the API of Web3Storage we can easily upload data.
 
 - Task: REST Connector (Bearer Auth)
 - Request Method: POST
@@ -359,10 +359,10 @@ The payload can be used to set how the message should be displayed in Slack. We 
 
 We did it!!! 10 services integrated, not one line of code. One last step is missing: we need to merge all nodes.
 
-![complete workflow](./img/complete-process-send-presentation-content-1280.gif)
+![complete workflow](https://ccon22.flethy.com/complete-process-send-presentation-content-1280.gif)
 
 The website I built as an input channel starts the process, which in turn goes through all the steps described.
 
 I hope I could convince you that you can use Camunda SaaS without writing code. Connectors and Secrets provides the basis for this. Most services offer a RESTful API that can be integrated using the generic REST connector.
 
-![thanks and qr code](./img/thanks-qr-code.png)
+![thanks and qr code](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/xkz6mng25fzg1o8v5kic.png)
