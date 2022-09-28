@@ -6,7 +6,7 @@ Everyone wants to have **satisfied customers and users**. A satisfied customer r
 
 ![hello, cutomer](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/qb978yg6cu72n03erc5i.png)
 
-So when we welcome a customer, for example, it's not just about writing a welcome email. It's about preparing a pleasant journey across all life cycles. A welcome email is only a small part of that.
+So when we welcome a customer, it's not just about writing a welcome email. It's about preparing a pleasant journey across all life cycles. A welcome email is only a small part of that.
 
 We can do much more:
 
@@ -24,21 +24,21 @@ Usually, none of these things is the core competency of your own product. It's m
 
 ## No line of code
 
-If you are a developer, this won't make you sweat. But what if you don't have a developer background? Do you need to request resources from developers? For my case described above, the answer is clearly **no**! I'm going to show you how you can easily integrate with 10 services without writing a single line of code using Camunda 8 and the recently introduced connectors.
+If you are a developer, this won't make you sweat. But what if you don't have a developer background? Do you need to request resources from developers? For my case described above, the answer is clearly **no**! I'm going to show you how you can easily integrate with 10 services without writing a single line of code using Camunda 8 and the recently introduced Connectors.
 
 ![workflow](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/qwhwqcesrbeyvgk7r8dl.png)
 
-That's the process I'm going to model in this article. The nice thing is that it is not a pure theoretical workflow, this workflow is deployed in Camunda SaaS and is started as soon as someone registers on the associated website with their email address. The workflow sends an email at the end with all necessary information, which I showed in my talk at [CamundaCon](https://camundacon.com) and decribed here.
+That's the process I'm going to model in this article. The nice thing is that it is not a pure theoretical workflow. This workflow is deployed in Camunda SaaS and is started as soon as someone registers on the corresponding website with their email address. The workflow sends an email with all necessary information, which I showed in my talk at [CamundaCon](https://camundacon.com) and decribed here.
 
 ![website](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/7vbkgv9n050dg2b0sexk.png)
 
 ## A little basic knowledge
 
-If you already have experience with Camunda 8, then you know that a Service Worker is required to execute a Service Task. Camunda 8 Connectors make the custom development of service workers for certain use cases obsolete. So if you want to call a service with a RESTful API, you can use the generic REST Connector, which only needs to be configured. This includes things like the URL of the API, the request method, authorization, and parameters.
+If you already have experience with Camunda 8, then you know that a Service Worker is required to execute a Service Task. Camunda 8 Connectors eliminate the custom development of service workers for certain use cases. So if you want to call a service with a RESTful API, you just use the generic REST Connector, which only needs some configuration: the URL of the API, the request method, authorization, and parameters.
 
 ![connectors](https://ccon22.flethy.com/configure-task-as-camunda-8-connector.gif)
 
-It's very easy to configure a task: just choose the associated connector instead of a service task. Currently there is a REST connector, a SendGrid connector and a Slack connector available.
+It's very easy to configure a task: just choose the associated Connector instead of a service task. Currently there is a REST connector, a SendGrid connector and a Slack connector available.
 
 To connect a service you have to do three things:
 
@@ -50,7 +50,7 @@ On Camunda's side, you will of course need a cluster, credentials in Secrets and
 
 ![secrets](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/zepd2ldm4zokwubzflm1.gif)
 
-Secrets were introduced together with connectors. They are used to keep the keys for the APIs in a safe place. Thus, no credentials need to be stored in your BPMN diagram, but references are used. The creation is easily done via the cluster details in the Cloud Console.
+Secrets were introduced together with Connectors. They are used to keep the keys for the APIs in a safe place. Thus, no credentials need to be stored in your BPMN diagram, instead references are used. The creation is easily done via the cluster details in the Cloud Console.
 
 ## Ready, Steady, Go!
 
@@ -58,7 +58,7 @@ After we have discussed the basic technique it is (finally) time to start with t
 
 ### A cat picture must not be missing
 
-Our email should contain a cat picture. So that not every email contains the same cat we use The Cat API to get a random cat image. The following parameters are necessary:
+Our email should contain a cat picture. In order to not have the same cat picture in every email we use The Cat API to get a random cat image. The following parameters are needed:
 
 - Task: REST Connector (No Auth)
 - Request Method: GET
@@ -77,7 +77,7 @@ The API provides us with an answer that looks like this:
 ]
 ```
 
-We are only interested in the URL, so we configure the following Result Expression:
+As we are only interested in the URL use the following Result Expression:
 
 ```
 {
@@ -91,7 +91,7 @@ Note: FEEL is used for the expression. Note that the first element is addressed 
 
 ### Variable contents
 
-The email contains various texts and links. To avoid having to constantly touch the email template when data changes, we use Contentful to store and read this data. This also has the advantage that this data can be used in other places. And we have a very natural separation between design and marketing copy.
+The email contains various texts and links. To avoid constantly touching the email template when data changes, we use Contentful to store and read this data. This also has the advantage that this data can be used in other places. And we have a very natural separation between design and marketing copy.
 
 - Task: REST Connector (Bearer Auth)
 - Request Method: POST
@@ -104,9 +104,9 @@ The semantics behind the attributes are as follows:
 
 - `id`: An internal identifier used to identify the entries.
 - `content`: The actual content, be it text or a link.
-- `order`: I made life a bit easy for myself and just want to execute one request against Contentful. By sorting by `order` I can target a specific entry.
+- `order`: I made life a bit easy for myself and just want to execute one request against Contentful. By sorting by `order` we can target a specific entry.
 
-Contentful provides a GraphQL API. With the following query I can read all entries from my collection:
+Contentful provides a GraphQL API. With the following query we can read all entries from my collection:
 
 ```
 {
@@ -133,13 +133,13 @@ The response from Contentful will be stored on the process context with the foll
 
 ### Something that lets you smile (hopefully)
 
-Not all the content is loaded from Contentful. With another API I would like to make the recipient laugh and add a Chuck Norris joke. The World Wide Web wouldn't be the World Wide Web if there wasn't a service for everything: quickly found is the ChuckNorris API.
+Not all the content is loaded from Contentful. We want to make the recipient laught and would like to use another API for that. The World Wide Web wouldn't be the World Wide Web if there wasn't a service for everything: there even is a ChuckNorris API!
 
 - Task: REST Connector (No Auth)
 - Request Method: GET
 - URL: https://api.chucknorris.io/jokes/random
 
-I can specify in the request from which category the jokes should be randomly selected. For this I use the following expression as query parameter:
+In the request we can specify from which category the jokes should be randomly selected. For this we use the following expression as query parameter:
 
 ```
 {
@@ -147,7 +147,7 @@ I can specify in the request from which category the jokes should be randomly se
 }
 ```
 
-I put the joke back on the process context so I can use it later in my email:
+We put the joke back on into the process context for using it later on in the email:
 
 ```
 {
@@ -155,7 +155,7 @@ I put the joke back on the process context so I can use it later in my email:
 }
 ```
 
-I think we're warmed up now: we've run the first requests, essentially to get data that we want to put into the final email. Next, we'll interact with services that run in the background and that a user doesn't directly notice.
+I think we're warmed up now! We ran the first requests, essentially to get data to put into the final email. Next, we'll interact with services that run in the background unnoticed by our users.
 
 ### A new entry in an Airtable
 
@@ -166,7 +166,7 @@ I don't think I need to say much about Airtable itself. In this section we will 
 - URL: https://api.airtable.com/v0/:appId/:tableId
 - Authentication: `secrets.AIRTABLE` (Bearer Token you can get from the Airtable App)
 
-The table consists of the following columns: `name`, `email` and `status`. In a real world example, a team could work with Airtable and assess which support this user could best use to get the best onboarding. Using the API, multiple records can be added at once. For our example, we want to create exactly one new record and configure the following payload:
+The table consists of the following columns: `name`, `email` and `status`. In a real world example, a team would work with Airtable to assess how much support a user needs to get the best onboarding experience. Using the API, multiple records can be added at once. For our example, we want to create exactly one new record and therefor configure the following payload:
 
 ```
 {
@@ -182,17 +182,17 @@ The table consists of the following columns: `name`, `email` and `status`. In a 
 }
 ```
 
-Because we don't need the response on the process context, we also don't define a Result Expression, so we're done with our configuration of Airtable.
+As we don't need the response on the process context, there is no need to define a Result Expression. We are already done with the configuration of Airtable!
 
 ### Create a new Task in Trello
 
-The Trello example has a similar background as the Airtable example just described. In the context of an onboarding, a task is to be created on a board so that an employee takes care of the user. This configuration is not complicated either:
+The Trello example has a similar background as the Airtable example just described. In the context of an onboarding, a task has to be created on a board so that an employee takes care of the user. This configuration is not complicated either:
 
 - Task: REST Connector (No Auth)
 - Request Method: POST
 - URL: https://api.trello.com/1/cards
 
-In doing so, I would like to add a new task on the board `ccon22`. The authentication works with the Trello API via query parameters, which look like this:
+In doing so, we would like to add a new task on the board `ccon22`. The authentication works with the Trello API via query parameters, which look like this:
 
 ```
 {
@@ -207,7 +207,7 @@ Two hints at this point: You can also store `secrets` in query parameters, pay a
 
 ### Plan for Marketing E-Mails
 
-The email we would like to send in the context of this article is a transactional mail. In the future, however, marketing emails may also be sent if a user has consented. For this we integrate Hubspot and create a new contact. In this way, marketing emails can be sent quite easily via Hubspot in the future.
+The email we would like to send is a transactional mail. In the future, however, marketing emails may also be sent if a user has consented. For this we integrate Hubspot and create a new contact. By using hubspot marketing emails can be sent quite easily in the future.
 
 - Task: REST Connector (Bearer Auth)
 - Request Method: POST
@@ -271,7 +271,7 @@ Blockchain, web3, crypto, there is no way to avoid these terms in the tech scene
 - URL: https://api.web3.storage/upload
 - Authentication: `secrets.WEB3STORAGE`
 
-We use the data we have already received from TheCatAPI, Contentful and the ChuckNorris API and create the following payload:
+We use the data we already received from TheCatAPI, Contentful and the ChuckNorris API and create the following payload:
 
 ```
 {
@@ -333,7 +333,7 @@ The template data is almost identical to that from the IPFS example. The only ad
 
 ### Notify the team
 
-Not all employees in a company have access to all tools, and that's fine. It's not necessary for everyone to have access to all Hubspot contacts, or to see all Trello boards. Still, a new customer is information that is readily shared. It's hard to imagine companies without messengers. Usually, all employees of a company use the same messenger service. For this example, we'll send an event to a Slack channel to draw attention to a new user.
+Not all employees in a company have access to every tool, and that's fine. It's not necessary for everyone to have access to all Hubspot contacts, or to see all Trello boards. Having the information about the arrival of a new customer is something noteworthy for everyone though. It's hard to imagine companies without messengers. Usually, all employees of a company use the same messenger service. For this example, we'll send an event to a Slack channel to draw attention to a new user.
 
 The prerequisite is that a Slack app exists and an incoming webhook is set up for a channel. The connector can be configured with the webhook URL:
 
