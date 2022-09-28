@@ -1,6 +1,6 @@
 # Be an orchestration hero
 
-Or: 10 Things you can do with Camunda SaaS without a line of code
+Or: _10 Things you can do with Camunda SaaS without a line of code_
 
 Everyone wants to have **satisfied customers and users**. A satisfied customer recommends your product or service, likes to give feedback and is also willing to spend money on it. The product itself is only half the truth. Whether a customer likes your product or not starts at the very first touch point.
 
@@ -36,7 +36,7 @@ That's the process I'm going to model in this article. The nice thing is that it
 
 If you already have experience with Camunda 8, then you know that a Service Worker is required to execute a Service Task. Camunda 8 Connectors eliminate the custom development of service workers for certain use cases. So if you want to call a service with a RESTful API, you just use the generic REST Connector, which only needs some configuration: the URL of the API, the request method, authorization, and parameters.
 
-![connectors](https://ccon22.flethy.com/configure-task-as-camunda-8-connector.gif)
+![connectors](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/obsq6z6y30x72br9i7k0.gif)
 
 It's very easy to configure a task: just choose the associated Connector instead of a service task. Currently there is a REST connector, a SendGrid connector and a Slack connector available.
 
@@ -359,7 +359,7 @@ The payload can be used to set how the message should be displayed in Slack. We 
 
 We did it!!! 10 services integrated, not one line of code. One last step is missing: we need to merge all nodes.
 
-![complete workflow](https://ccon22.flethy.com/complete-process-send-presentation-content-1280.gif)
+![complete workflow](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/ijhaauttzzj0gxvjmjcu.gif)
 
 The website I built as an input channel starts the process, which in turn goes through all the steps described.
 
